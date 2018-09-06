@@ -19,9 +19,9 @@ public class Movie {
     private String _title;
     private int _priceCode;
 
-    public Movie(String _title, int _priceCode) {
-        this._title = _title;
-        this._priceCode = _priceCode;
+    public Movie(String title, int priceCode) {
+        this._title = title;
+        setPriceCode(priceCode);
     }
 
     public String getTitle() {
