@@ -1,5 +1,10 @@
 package com.example.klook.infectoring;
 
+import com.example.klook.infectoring.price.ChildrenPrice;
+import com.example.klook.infectoring.price.NewReleasePrice;
+import com.example.klook.infectoring.price.Price;
+import com.example.klook.infectoring.price.RegularPrice;
+
 /**
  * [Description]
  * <p>
@@ -18,6 +23,7 @@ public class Movie {
 
     private String _title;
     private int _priceCode;
+    private Price _price;
 
     public Movie(String title, int priceCode) {
         this._title = title;
@@ -29,44 +35,32 @@ public class Movie {
     }
 
     public int getPriceCode() {
-        return _priceCode;
+        return _price.getPriceCode();
     }
 
-    public void setPriceCode(int _priceCode) {
-        this._priceCode = _priceCode;
+    public void setPriceCode(int arg) {
+        switch (arg) {
+            case REGULAR:
+                _price = new RegularPrice();
+                break;
+            case CHILDRENS:
+                _price = new ChildrenPrice();
+                break;
+            case NEW_RELEASE:
+                _price = new NewReleasePrice();
+                break;
+            default:
+                throw new IllegalArgumentException("Incorrect Price Code");
+        }
     }
 
     public double getCharge(int daysRented) {
-        double result = 0;
-        switch (getPriceCode()) {
-            case Movie.REGULAR:
-                result += 2;
-                if (daysRented > 2) {
-                    result += (daysRented - 2) * 1.5;
-                }
-                break;
-            case Movie.NEW_RELEASE:
-                result += daysRented * 3;
-                break;
-            case Movie.CHILDRENS:
-                result += 1.5;
-                if (daysRented > 3) {
-                    result += (daysRented - 3) * 1.5;
-                }
-                break;
 
-        }
-        return result;
+        return _price.getCharge(daysRented);
     }
 
     public int getFrequentRenterPoints(int daysRented){
-        //add frequent renter points
-        int frequentRenterPoint = 0;
-        frequentRenterPoint++;
-        //add bonus for a tow day new release rental
-        if ((getPriceCode() == Movie.NEW_RELEASE) && daysRented > 1) {
-            frequentRenterPoint++;
-        }
-        return frequentRenterPoint;
+
+        return _price.getFrequentRenterPoints(daysRented);
     }
 }

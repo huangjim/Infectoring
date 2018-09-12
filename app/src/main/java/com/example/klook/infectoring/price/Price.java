@@ -1,7 +1,5 @@
 package com.example.klook.infectoring.price;
 
-import com.example.klook.infectoring.Movie;
-
 /**
  * [Description]
  * <p>
@@ -13,29 +11,14 @@ import com.example.klook.infectoring.Movie;
  * @since 1.0.0
  */
 public abstract class Price {
-    abstract int getPriceCode();
 
-    class ChildrenPrice extends Price {
+    public abstract int getPriceCode();
 
-        @Override
-        int getPriceCode() {
-            return Movie.CHILDRENS;
-        }
-    }
+    public abstract double getCharge(int daysRented);
 
-    class NewReleasePrice extends Price {
 
-        @Override
-        int getPriceCode() {
-            return Movie.NEW_RELEASE;
-        }
-    }
+    public int getFrequentRenterPoints(int daysRented) {
 
-    class RegularPrice extends Price {
-
-        @Override
-        int getPriceCode() {
-            return Movie.REGULAR;
-        }
+        return 1;
     }
 }
