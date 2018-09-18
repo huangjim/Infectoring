@@ -16,7 +16,7 @@ import com.example.klook.infectoring.price.RegularPrice;
  * @since 1.0.0
  */
 public class Movie {
-    private String test444;
+    private String test555;
 
     public static final int CHILDRENS = 2;
     public static final int REGULAR = 0;
