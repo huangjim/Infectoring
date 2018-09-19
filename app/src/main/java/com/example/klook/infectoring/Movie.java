@@ -16,6 +16,9 @@ import com.example.klook.infectoring.price.RegularPrice;
  * @since 1.0.0
  */
 public class Movie {
+    /**
+     * 测试撤销2
+     */
     private String test666;
     private String feature3;
 
